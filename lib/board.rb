@@ -31,12 +31,11 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
   end
 
   def receive_hit position
-    status = board.select{ |x| x[:coords] == position }
-    if status == []
+    board_position = board.select{ |x| x[:coords] == position }
+    if board_position == []
       "Miss"
     else
-      status[0][:ship].hit
-      "Hit"
+      hit board_position[0][:ship]
     end
   end
 
@@ -50,6 +49,7 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
 
   def hit ship
     ship.hit
+    "Hit"
   end
 
 
@@ -64,12 +64,12 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
     #   elsif direction == 'east'
     #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[(x)] + YCOORDS[y + 1]
     #   elsif direction == 'west'
-    #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[(x)] + YCOORDS[y - 1].to_s
+    #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[(x)] + YCOORDS[y - 1]
     #   end
     # end  ##
 
 end
 # board1 = Board.new
 # board1.location_iterator "C1", 'west'
-#"place ship at A1, A2" => ship = [A1, A2]
-#{}"place ship at A1, A2" => board << {A1. ship}, {A2,ship}
+# #"place ship at A1, A2" => ship = [A1, A2]
+# #{}"place ship at A1, A2" => board << {A1. ship}, {A2,ship}

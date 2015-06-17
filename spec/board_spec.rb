@@ -41,7 +41,7 @@ describe "accept ship" do
     expect{ subject.accept :ship1, :X3 }.to raise_error 'invalid location'
   end
 
-  xit 'can place a ship of more then size 1 on board'
+  # it 'can place a ship of more then size 1 on board'
 
 
 end
