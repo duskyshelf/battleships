@@ -22,7 +22,7 @@ describe Player do
     end
 
     it 'will tell you if a ship is hit when fired upon' do
-      ship = Ship.new 2
+      ship = double :ship, hit: true
       subject.place ship, :A1
       expect(subject.fire :A1).to eq 'Hit'
     end
