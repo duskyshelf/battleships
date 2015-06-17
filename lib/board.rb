@@ -11,6 +11,9 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
           :I1, :I2, :I3, :I4, :I5, :I6, :I7, :I8, :I9, :I10,
           :J1, :J2, :J3, :J4, :J5, :J6, :J7, :J8, :J9, :J10]
 
+# XCOORDS = ['A'..'J']
+# YCOORDS = [ 1..10]
+
   attr_reader :board
 
   def initialize
@@ -37,8 +40,25 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
   def invalid? position
     !COORDS.include?(position)
   end
+
+
+
+    # def location_iterator coords, direction
+    #   x = XCOORDS.find_index(coords[0])
+    #   y = YCOORDS.find_index(coords[1])
+    #   if direction == 'north'
+    #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[x + 1] + YCOORDS[y]
+    #   elsif direction == 'south'
+    #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[x - 1] + YCOORDS[y]
+    #   elsif direction == 'east'
+    #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[(x)] + YCOORDS[y + 1]
+    #   elsif direction == 'west'
+    #     puts XCOORDS[x] + YCOORDS[y], XCOORDS[(x)] + YCOORDS[y - 1].to_s
+    #   end
+    # end  ##
+
 end
-
-
+# board1 = Board.new
+# board1.location_iterator "C1", 'west'
 #"place ship at A1, A2" => ship = [A1, A2]
 #{}"place ship at A1, A2" => board << {A1. ship}, {A2,ship}
