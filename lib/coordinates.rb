@@ -3,28 +3,33 @@ class Coords
 XCOORDS = ['A','B','C','D','E','F','G','H','I','J']
 YCOORDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
-  def self.west coordinates, length
+  def self.west coords, length
+
   end
 
   def self.east coords, length
     x = coords[0]
     y = coords[1]
     result = []
-    i = 1
-    acc = y
-    while i <= length
-      result << (x+acc).to_sym
-      acc = acc.next
-      i += 1
+    length.times do
+      result << (x + y).to_sym
+      y = y.next
     end
-
     result
   end
 
-  def self.north coordinates, length
+  def self.north coords, length
   end
 
-  def self.south coordinates, length
+  def self.south coords, length
+    x = coords[0]
+    y = coords[1]
+    result = []
+    length.times do
+      result << (x + y).to_sym
+      x = x.next
+    end
+    result
   end
 
 
