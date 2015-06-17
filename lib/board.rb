@@ -1,3 +1,5 @@
+require_relative 'ship'
+
 class Board
 
 COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
@@ -28,9 +30,14 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
     board << {coords: position, ship: ship}
   end
 
-  def report position
+  def receive_hit position
     status = board.select{ |x| x[:coords] == position }
-    status == [] ? "Miss" : "Hit"
+    if status == []
+      "Miss"
+    else
+      status[0][:ship].hit
+      "Hit"
+    end
   end
 
   def occupied? position
@@ -39,6 +46,10 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
 
   def invalid? position
     !COORDS.include?(position)
+  end
+
+  def hit ship
+    ship.hit
   end
 
 

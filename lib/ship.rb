@@ -12,6 +12,9 @@ class Ship
 
   def hit
     @damage += 1
+    if sunk?
+      "Sunk"
+    end
   end
 
   def sunk?

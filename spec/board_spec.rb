@@ -49,13 +49,14 @@ end
 describe "report" do
 
   it "can report a miss" do
-    response = subject.report :A1
+    response = subject.receive_hit :A1
     expect(response).to eq "Miss"
   end
 
   it "can report a hit" do
-    subject.accept :ship, :A1
-    response = subject.report :A1
+    ship = double :ship, hit: true
+    subject.accept ship, :A1
+    response = subject.receive_hit :A1
     expect(response).to eq "Hit"
   end
 end
