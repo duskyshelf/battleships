@@ -1,14 +1,19 @@
 class Coords
 
-YCOORDS = ['A','B','C','D','E','F','G','H','I','J']
-XCOORDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+YCOORDS = ('A'..'J').to_a
+XCOORDS = ('1'..'10').to_a
+
+  def self.split coords
+    @y = YCOORDS.find_index(coords[0])
+    @x = XCOORDS.find_index(coords[1])
+  end
 
   def self.west coords, length
     split coords
     result = []
     length.times do
-      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
-      @y -= 1
+      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      @x -= 1
     end
     result
   end
@@ -17,8 +22,8 @@ XCOORDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
     split coords
     result = []
     length.times do
-      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
-      @y += 1
+      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      @x += 1
     end
     result
   end
@@ -27,8 +32,8 @@ XCOORDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
     split coords
     result = []
     length.times do
-      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
-      @x -= 1
+      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      @y -= 1
     end
     result
   end
@@ -37,29 +42,10 @@ XCOORDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
     split coords
     result = []
     length.times do
-      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
-      @x += 1
+      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      @y += 1
     end
     result
   end
 
-
-  def self.split coords
-    @x = YCOORDS.find_index(coords[0])
-    @y = XCOORDS.find_index(coords[1])
-  end
-
-  # def blah
-  #   if direction == 'north'
-  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x + 1] + XCOORDS[y]]
-  #   elsif direction == 'south'
-  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x - 1] + XCOORDS[y]]
-
-  #   elsif direction == 'east'
-  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x] + XCOORDS[y + 1]]
-
-  #   elsif direction == 'west'
-  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x] + XCOORDS[y - 1]]
-  #   end
-  # end
 end

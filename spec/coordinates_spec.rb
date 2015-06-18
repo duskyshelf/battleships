@@ -43,4 +43,16 @@ describe Coords do
     end
   end
 
+  context 'West' do
+    it 'returns [A1, A2] give an input of A1, north, 2' do
+      output = Coords.west :D5, 2
+      expect(output).to eq [:D5, :D4]
+    end
+
+    it 'returns [A1, A2, A3] give an input of A1, north, 3' do
+      output = Coords.west :E3, 3
+      expect(output).to eq [:E3, :E2, :E1]
+    end
+  end
+
 end
