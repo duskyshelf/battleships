@@ -15,7 +15,6 @@ describe Board do
 describe "accept ship" do
 
   it "places ship in location" do
-
     subject.accept :ship, :A1
     expect(subject.board).to eq [{coords: :A1, ship: :ship}]
   end

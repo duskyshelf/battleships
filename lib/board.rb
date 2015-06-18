@@ -20,10 +20,18 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
   end
 
   def accept ship, position
-    fail 'location occupied' if occupied?(position)
-    fail 'invalid location' if invalid?(position)
+    check_position position
     ## repeat checks for entire length of ship
 
+    place ship, position
+  end
+
+  def check_position position
+    fail 'location occupied' if occupied?(position)
+    fail 'invalid location' if invalid?(position)
+  end
+
+  def place ship, position
     board << {coords: position, ship: ship}
   end
 
@@ -50,6 +58,7 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
     ship.hit
     "Hit"
   end
+
 end
 
 # #"place ship at A1, A2" => ship = [A1, A2]
