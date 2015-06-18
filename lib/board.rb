@@ -28,6 +28,10 @@ class Board
     end
   end
 
+  def all_sunk?
+    board.all?{ |place| place[:ship].sunk? }
+  end
+
   private
 
   def check_occupied position
@@ -43,6 +47,8 @@ class Board
     ship.hit
     ship.sunk? ? 'Hit & Sunk' : 'Hit'
   end
+
+
 
 end
 

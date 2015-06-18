@@ -58,6 +58,10 @@ describe "report" do
     response = subject.receive_hit :A1
     expect(response).to eq "Hit"
   end
+
+  it "can report that all ships are sunk" do
+    expect(subject.all_sunk?).to be true
+  end
 end
 
 
