@@ -23,7 +23,7 @@ describe Player do
 
     it 'will tell you if a ship is hit when fired upon' do
       ship = double :ship, hit: true, size: 2
-      subject.place ship, :A1, :N
+      subject.place ship, :A1, :S
       expect(subject.fire :A1).to eq 'Hit'
     end
 
