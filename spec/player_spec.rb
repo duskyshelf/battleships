@@ -4,12 +4,12 @@ describe Player do
 
   describe 'Place' do
 
-    it { is_expected.to respond_to(:place).with(2).argument }
+    it { is_expected.to respond_to(:place).with(3).argument }
 
     it 'can put a ship on the board' do
       ship = double :ship
       expect(subject.board).to receive :accept
-      subject.place ship, :A1
+      subject.place ship, :A1, :N
     end
 
   end
@@ -22,14 +22,14 @@ describe Player do
     end
 
     it 'will tell you if a ship is hit when fired upon' do
-      ship = double :ship, hit: true
-      subject.place ship, :A1
+      ship = double :ship, hit: true, size: 2
+      subject.place ship, :A1, :N
       expect(subject.fire :A1).to eq 'Hit'
     end
 
     it 'will tell you if a ship is hit when fired upon' do
-      ship = double :ship
-      subject.place ship, :A1
+      ship = double :ship, size: 1
+      subject.place ship, :A1, :N
       expect(subject.fire :A2).to eq 'Miss'
     end
 

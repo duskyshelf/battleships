@@ -1,4 +1,5 @@
 require_relative 'ship'
+require_relative 'coordinates'
 
 class Board
 
@@ -19,16 +20,11 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
     @board = []
   end
 
-  def accept ship, position
+  def accept ship, position, direction
     check_position position
-    ## repeat checks for entire length of ship
-
-    place ship, position
-  end
-
-  def check_position position
-    fail 'location occupied' if occupied?(position)
-    fail 'invalid location' if invalid?(position)
+    coords = Coords.create position, ship.size, direction
+    coords.each { |x| check_position x }
+    coords.each { |x| place ship, x }
   end
 
   def place ship, position
@@ -40,11 +36,16 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
     if board_position == []
       "Miss"
     else
-      hit board_position[0][:ship]
+      damage board_position[0][:ship]
     end
   end
 
   private
+
+  def check_position position
+    fail 'location occupied' if occupied?(position)
+    fail 'invalid location' if invalid?(position)
+  end
 
   def occupied? position
     board.select{ |x| x[:coords] == position } != []
@@ -54,7 +55,7 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
     !COORDS.include?(position)
   end
 
-  def hit ship
+  def damage ship
     ship.hit
     "Hit"
   end

@@ -9,8 +9,8 @@ attr_accessor :board
   end
 
 
-  def place ship, coords
-    board.accept ship, coords
+  def place ship, coords, direction
+    board.accept ship, coords, direction
   end
 
   def fire coords

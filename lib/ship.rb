@@ -8,7 +8,6 @@ class Ship
     @damage = 0
   end
 
-
   def hit
     @damage += 1
   end
