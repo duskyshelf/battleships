@@ -33,7 +33,7 @@ describe "accept ship" do
 
   it "raises error when location occupied" do
     subject.accept :ship1, :A1
-    expect{ subject.accept :ship2,:A1 }.to raise_error 'location occupied'
+    expect{ subject.accept :ship2, :A1 }.to raise_error 'location occupied'
   end
 
   it 'raises error when location is not on board' do

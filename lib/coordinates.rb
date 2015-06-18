@@ -1,55 +1,65 @@
 class Coords
 
-# XCOORDS = ['X' 'A','B','C','D','E','F','G','H','I','J']
-# YCOORDS = ['99' '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+YCOORDS = ['A','B','C','D','E','F','G','H','I','J']
+XCOORDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
   def self.west coords, length
-
+    split coords
+    result = []
+    length.times do
+      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
+      @y -= 1
+    end
+    result
   end
 
   def self.east coords, length
-    x = coords[0]
-    y = coords[1]
+    split coords
     result = []
     length.times do
-      result << (x + y).to_sym
-      y = y.next
+      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
+      @y += 1
     end
     result
   end
 
   def self.north coords, length
+    split coords
+    result = []
+    length.times do
+      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
+      @x -= 1
+    end
+    result
   end
 
   def self.south coords, length
-    x = coords[0]
-    y = coords[1]
+    split coords
     result = []
     length.times do
-      result << (x + y).to_sym
-      x = x.next
+      result << (YCOORDS[@x] + XCOORDS[@y]).to_sym
+      @x += 1
     end
     result
   end
 
 
-  # def split coords
-  #   x = XCOORDS.find_index(coords[0])
-  #   y = YCOORDS.find_index(coords[1])
-  #   [x,y]
-  # end
+  def self.split coords
+    @x = YCOORDS.find_index(coords[0])
+    @y = XCOORDS.find_index(coords[1])
+  end
 
   # def blah
   #   if direction == 'north'
-  #     [XCOORDS[x] + YCOORDS[y], XCOORDS[x + 1] + YCOORDS[y]]
+  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x + 1] + XCOORDS[y]]
   #   elsif direction == 'south'
-  #     [XCOORDS[x] + YCOORDS[y], XCOORDS[x - 1] + YCOORDS[y]]
+  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x - 1] + XCOORDS[y]]
 
   #   elsif direction == 'east'
-  #     [XCOORDS[x] + YCOORDS[y], XCOORDS[x] + YCOORDS[y + 1]]
+  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x] + XCOORDS[y + 1]]
 
   #   elsif direction == 'west'
-  #     [XCOORDS[x] + YCOORDS[y], XCOORDS[x] + YCOORDS[y - 1]]
+  #     [YCOORDS[x] + XCOORDS[y], YCOORDS[x] + XCOORDS[y - 1]]
   #   end
   # end
 end
