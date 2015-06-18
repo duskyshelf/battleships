@@ -11,7 +11,6 @@ describe Player do
       expect(subject.board).to receive :accept
       subject.place ship, :A1, :N
     end
-
   end
 
   describe 'Fire' do
@@ -22,12 +21,12 @@ describe Player do
     end
 
     it 'will tell you if a ship is hit when fired upon' do
-      ship = double :ship, hit: true, size: 2
+      ship = double :ship, hit: true, size: 2, sunk?: false
       subject.place ship, :A1, :S
       expect(subject.fire :A1).to eq 'Hit'
     end
 
-    it 'will tell you if a ship is hit when fired upon' do
+    it 'will tell you if a ship is missed when fired upon' do
       ship = double :ship, size: 1
       subject.place ship, :A1, :N
       expect(subject.fire :A2).to eq 'Miss'
@@ -38,9 +37,11 @@ describe Player do
     #   subject.place ship, :A1
     #   expect(subject.fire :A1).to eq 'Sunk'
     # end
-
-
-
+    
+    it 'will tell you when a ship is sunk' do
+      ship = double :ship, sunk?: true, size: 1, hit: true
+      subject.place ship, :A1, :S
+      expect(subject.fire :A1).to eq "Hit & Sunk"      
+    end
   end
-
 end

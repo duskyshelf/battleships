@@ -9,12 +9,16 @@ end
 
 it "can register multiple hits" do
   2.times { subject.hit }
-    expect(subject.damage).to eq 2
-  end
+  expect(subject.damage).to eq 2
+end
 
 it "is sunk when hit enough times" do
   subject.size.times { subject.hit }
   expect(subject).to be_sunk
+end
+
+it "is not sunk initially" do
+  expect(subject).not_to be_sunk
 end
 
 end
