@@ -32,12 +32,6 @@ describe Player do
       expect(subject.fire :A2).to eq 'Miss'
     end
 
-    # it 'will return sunk when ship is fired upon and sunk' do
-    #   ship = Ship.new
-    #   subject.place ship, :A1
-    #   expect(subject.fire :A1).to eq 'Sunk'
-    # end
-    
     it 'will tell you when a ship is sunk' do
       ship = double :ship, sunk?: true, size: 1, hit: true
       subject.place ship, :A1, :S
