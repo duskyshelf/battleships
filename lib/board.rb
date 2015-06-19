@@ -10,13 +10,9 @@ class Board
   end
 
   def accept ship, position, direction
-    coords = Coords.create position, ship.size, direction
-    coords.each { |x| check_occupied x }
-    coords.each { |x| place ship, x }
-  end
-
-  def place ship, position
-    board << {coords: position, ship: ship}
+    ship_range = Coords.generate position, ship.size, direction
+    ship_range.each { |coord| check_occupied coord }
+    ship_range.each { |coord| place ship, coord }
   end
 
   def receive_hit position
@@ -32,6 +28,7 @@ class Board
     board.all?{ |place| place[:ship].sunk? }
   end
 
+
   private
 
   def check_occupied position
@@ -42,15 +39,13 @@ class Board
     board.select{ |x| x[:coords] == position } != []
   end
 
+  def place ship, position
+    board << {coords: position, ship: ship}
+  end
 
   def damage ship
     ship.hit
     ship.sunk? ? 'Hit & Sunk' : 'Hit'
   end
 
-
-
 end
-
-# #"place ship at A1, A2" => ship = [A1, A2]
-# #{}"place ship at A1, A2" => board << {A1. ship}, {A2,ship}

@@ -14,62 +14,73 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
           :I1, :I2, :I3, :I4, :I5, :I6, :I7, :I8, :I9, :I10,
           :J1, :J2, :J3, :J4, :J5, :J6, :J7, :J8, :J9, :J10]
 
-  def self.create coords, length, direction
+  def self.generate coords, length, direction
     fail 'Invalid location' if invalid?(coords)
     self.send(direction, coords, length)
   end
 
-  def self.split coords
-    @y = YCOORDS.find_index(coords[0])
-    @x = XCOORDS.find_index(coords[1..-1])
-  end
+
+  private
 
   def self.W coords, length
-    split coords
+    seperate coords
     result = []
     length.times do
-      fail "Invalid location" if @x < 0
-      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      valid_dimension? @x
+      result << combine_params(@y, @x)
       @x -= 1
     end
     result
   end
 
   def self.E coords, length
-    split coords
+    seperate coords
     result = []
     length.times do
-      fail "Invalid location" if @x > 10
-      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      valid_dimension? @x
+      result << combine_params(@y, @x)
       @x += 1
     end
     result
   end
 
   def self.N coords, length
-    split coords
+    seperate coords
     result = []
     length.times do
-      fail "Invalid location" if @y < 0
-      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      valid_dimension? @y
+      result << combine_params(@y, @x)
       @y -= 1
     end
     result
   end
 
   def self.S coords, length
-    split coords
+    seperate coords
     result = []
     length.times do
-      fail "Invalid location" if @y > 10
-      result << (YCOORDS[@y] + XCOORDS[@x]).to_sym
+      valid_dimension? @y
+      result << combine_params(@y, @x)
       @y += 1
     end
     result
   end
 
+  def self.seperate coords
+    @y = YCOORDS.find_index(coords[0])
+    @x = XCOORDS.find_index(coords[1..-1])
+  end
+
   def self.invalid? coords
     !COORDS.include?(coords)
+  end
+
+  def self.valid_dimension? param
+    fail "Invalid location" if (param > 10 || param < 0)
+  end
+
+  def self.combine_params y, x
+    (YCOORDS[y] + XCOORDS[x]).to_sym
   end
 
 end

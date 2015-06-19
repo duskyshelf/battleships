@@ -39,10 +39,6 @@ describe "accept ship" do
   it 'raises error when location is not on board' do
     expect{ subject.accept ship1, :X3, :N }.to raise_error 'Invalid location'
   end
-
-  # it 'can place a ship of more then size 1 on board'
-
-
 end
 
 describe "report" do
@@ -63,7 +59,5 @@ describe "report" do
     expect(subject.all_sunk?).to be true
   end
 end
-
-
 
 end

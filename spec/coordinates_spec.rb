@@ -2,6 +2,12 @@ require 'coordinates'
 
 describe Coords do
 
+  context 'Generate' do
+    it 'calls E method given an input of :E' do
+    expect(Coords.generate :A1, 2, :E).to eq [:A1, :A2]
+    end
+  end
+
   context 'East' do
   	it 'returns [A1, A2] given an input of A1, east, 2' do
   		output = Coords.E :A1, 2
@@ -60,9 +66,10 @@ describe Coords do
     end
   end
 
-  context 'error checking' do 
+  context 'error checking' do
     it 'returns error "Invalid location"' do
       expect{Coords.W :E1, 2}.to raise_error 'Invalid location'
     end
   end
+
 end

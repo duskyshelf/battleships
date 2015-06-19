@@ -16,7 +16,4 @@ class Ship
     size == damage
   end
 
-private
-
-
 end

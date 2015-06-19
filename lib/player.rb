@@ -8,7 +8,6 @@ attr_accessor :board
     @board = Board.new
   end
 
-
   def place ship, coords, direction
     board.accept ship, coords, direction
   end
