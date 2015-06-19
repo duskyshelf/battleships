@@ -16,4 +16,8 @@ attr_accessor :board
     board.receive_hit coords
   end
 
+  def lost?
+    board.all_sunk?
+  end
+
 end

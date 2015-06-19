@@ -16,6 +16,7 @@ class Board
   end
 
   def receive_hit position
+    Coords.generate position
     board_position = board.select{ |x| x[:coords] == position }
     if board_position == []
       "Miss"

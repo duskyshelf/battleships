@@ -14,7 +14,7 @@ COORDS = [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10,
           :I1, :I2, :I3, :I4, :I5, :I6, :I7, :I8, :I9, :I10,
           :J1, :J2, :J3, :J4, :J5, :J6, :J7, :J8, :J9, :J10]
 
-  def self.generate coords, length, direction
+  def self.generate coords, length = 1, direction = :E
     fail 'Invalid location' if invalid?(coords)
     self.send(direction, coords, length)
   end
